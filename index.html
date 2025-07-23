@@ -2,233 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Satellite Defense Toolkit</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta property="og:image" content="assets/social_preview.PNG" />
   <link rel="stylesheet" href="assets/style.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.0.3/tsparticles.bundle.min.js"></script>
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
-  <div id="tsparticles"></div>
-
-  <!-- HERO SECTION -->
-  <header class="hero">
-    <img src="assets/hero-bg.PNG" alt="Satellite Defense Toolkit" class="hero-image" />
-    <div class="hero-overlay" data-aos="fade-up">
-      <h1>Satellite Defense Toolkit</h1>
-      <p>Advanced Red & Blue Teaming for Space, IoT & Edge Devices</p>
-      <div class="cta-buttons">
-        <a href="https://github.com/s0m3on35/satellite-defense-toolkit" class="button">GitHub Repository</a>
-        <a href="webgui_web/index.html" class="button secondary">Open Live Dashboard</a>
-      </div>
-    </div>
+  <header>
+    <h1>Satellite Defense Toolkit</h1>
+    <p>Advanced Red & Blue Teaming for Space, IoT & Edge Devices</p>
+    <p>
+      <a href="https://github.com/s0m3on35/satellite-defense-toolkit" target="_blank">GitHub Repository</a> |
+      <a href="#modules">Open Live Dashboard</a>
+    </p>
   </header>
 
-  <!-- FEATURES -->
-  <section class="features" data-aos="fade-up">
+  <section id="capabilities">
     <h2>Main Capabilities</h2>
-    <div class="features-grid">
-      <div class="feature-card"><h3>Defense Modules</h3><p>Firmware, OTA, and RF protection for critical satellite assets.</p></div>
-      <div class="feature-card"><h3>Signal Recon</h3><p>Capture and analyze SDR, GNSS, BLE, RF, and satellite data.</p></div>
-      <div class="feature-card"><h3>Live Telemetry</h3><p>Monitor satellite signals and detect anomalies in real time.</p></div>
-      <div class="feature-card"><h3>Operational Dashboard</h3><p>Control modules and agents with a live, tactical web interface.</p></div>
-      <div class="feature-card"><h3>AI Anomaly Detection</h3><p>Deploy LSTM and Copilot models for telemetry monitoring and threat detection.</p></div>
-      <div class="feature-card"><h3>Covert C2 Channels</h3><p>Use RF, GNSS, DNS, and stego dropper channels for reliable command delivery.</p></div>
-      <div class="feature-card"><h3>Threat Intel & STIX</h3><p>Convert findings into STIX/TAXII reports with auto enrichment.</p></div>
-      <div class="feature-card"><h3>Timeline & Forensics</h3><p>Generate detailed forensics and signal timelines for investigations.</p></div>
+    <div class="cards">
+      <div class="card">
+        <h3>Exploits</h3>
+        <p>Offensive operations on lab space systems.</p>
+      </div>
+      <div class="card">
+        <h3>Signal Recon</h3>
+        <p>Capture and analyze SDR, GNSS, BLE, RF, and satellite data.</p>
+      </div>
+      <div class="card">
+        <h3>Live Telemetry</h3>
+        <p>Monitor satellite signals and AI-detect anomalies in real time.</p>
+      </div>
+      <div class="card">
+        <h3>Operational Dashboard</h3>
+        <p>Control modules and agents with a live, tactical web interface.</p>
+      </div>
+      <div class="card">
+        <h3>AI Anomaly Detection</h3>
+        <p>Deploy LSTM and Copilot models for telemetry tagging and threat detection.</p>
+      </div>
+      <div class="card">
+        <h3>Covert C2 Channels</h3>
+        <p>Use RF, GNSS, DNS, and stego dropper channels for reliable command delivery.</p>
+      </div>
+      <div class="card">
+        <h3>Threat Intel & STIX</h3>
+        <p>Convert findings into STIX/TAXII reports with auto enrichment.</p>
+      </div>
+      <div class="card">
+        <h3>Timeline & Forensics</h3>
+        <p>Generate incident timelines and signal timelines for investigations.</p>
+      </div>
     </div>
   </section>
 
-  <!-- MODULE FILTER -->
-  <section class="modules-section" data-aos="fade-up">
+  <section id="modules">
     <h2>Browse Modules</h2>
-    <label for="moduleTag">Filter by tag:</label>
-    <select id="moduleTag"></select>
-    <div id="modulesContainer" class="features-grid"></div>
+    <div class="filter-bar">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="defense">Defense</button>
+      <button data-filter="recon">Recon</button>
+      <button data-filter="exploit">Exploit</button>
+      <button data-filter="c2">C2</button>
+      <button data-filter="forensics">Forensics</button>
+      <button data-filter="intel">Intel</button>
+      <button data-filter="ai">AI</button>
+    </div>
+    <div class="cards"></div>
   </section>
 
-  <!-- METRICS -->
-  <section class="metrics-section" data-aos="fade-up">
-    <h2>Real-Time Toolkit Metrics</h2>
-    <canvas id="telemetryChart" width="600" height="300"></canvas>
-  </section>
-
-  <!-- GETTING STARTED -->
-  <section class="how-to" data-aos="fade-up">
-    <h2>Getting Started</h2>
-    <ol>
-      <li>Clone the repo: <code>git clone https://github.com/s0m3on35/satellite-defense-toolkit</code></li>
-      <li>Install Python dependencies: <code>pip install -r requirements.txt</code></li>
-      <li>Launch: <code>python3 webgui_web/app.py</code></li>
-      <li>Access dashboard at <code>http://localhost:5000</code></li>
-    </ol>
-  </section>
-
-  <!-- FOOTER -->
   <footer>
-    <p>© 2025 Satellite Defense Toolkit • MIT License • Built by RedOps Division (D)</p>
+    <p>© 2025 Satellite Defense Toolkit • MIT License • Hosted on GitHub Pages</p>
   </footer>
 
-  <!-- SCRIPT -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init();
-
-    const modules = [
-      // Defense
-      { name: "Firmware Memory Shield", tag: "defense" },
-      { name: "Firewall Rule Generator", tag: "defense" },
-      { name: "GNSS Spoof Guard", tag: "defense" },
-      { name: "Firmware Integrity Watcher", tag: "defense" },
-      { name: "Firmware Signature Validator", tag: "defense" },
-      { name: "Firmware Rollback Protector", tag: "defense" },
-      { name: "Binary Integrity Watcher", tag: "defense" },
-      { name: "Live Integrity Watcher", tag: "defense" },
-      { name: "Kernel Module Guard", tag: "defense" },
-      { name: "RF Injection Barrier", tag: "defense" },
-      { name: "System Call Anomaly Watcher", tag: "defense" },
-      { name: "Secure Update Guard", tag: "defense" },
-      { name: "Telemetry Guardian", tag: "defense" },
-      { name: "Interface Integrity Monitor", tag: "defense" },
-      { name: "OTA Guard", tag: "defense" },
-      { name: "OTA Stream Guard", tag: "defense" },
-
-      // Recon
-      { name: "BLE Scanner", tag: "recon" },
-      { name: "RF SDR Capture", tag: "recon" },
-      { name: "GNSS Anomaly Detector", tag: "recon" },
-      { name: "Passive Satellite Fingerprinter", tag: "recon" },
-      { name: "SDR Burst Signal Detector", tag: "recon" },
-      { name: "RTCM Interceptor", tag: "recon" },
-
-      // Exploit
-      { name: "Iframe Payload Injector", tag: "exploit" },
-      { name: "Upload Poisoner", tag: "exploit" },
-      { name: "OTA Backdoor Stager", tag: "exploit" },
-      { name: "Public Screen Overwriter", tag: "exploit" },
-      { name: "Firmware Dropper", tag: "exploit" },
-
-      // C2
-      { name: "DNS C2", tag: "c2" },
-      { name: "Agent Commander", tag: "c2" },
-      { name: "Agent Mesh Router", tag: "c2" },
-      { name: "RF Stego Dropper", tag: "c2" },
-      { name: "RF Stego Receiver", tag: "c2" },
-      { name: "Dead-Drop Uploader", tag: "c2" },
-      { name: "Dead-Drop Receiver", tag: "c2" },
-      { name: "Fallback GNSS Beacon C2", tag: "c2" },
-      { name: "Signal-aware Dead-Drop Uploader", tag: "c2" },
-
-      // Forensics
-      { name: "Firmware Timeline Builder", tag: "forensics" },
-      { name: "Firmware CVE Mapper", tag: "forensics" },
-      { name: "Signal Artifact Timeline Builder", tag: "forensics" },
-      { name: "Satellite Telemetry Playback", tag: "forensics" },
-
-      // Intel
-      { name: "YARA STIX Exporter", tag: "intel" },
-      { name: "Threat Group Tracker", tag: "intel" },
-      { name: "Firmware Threat Feed Aggregator", tag: "intel" },
-      { name: "Satellite Threat Intel Parser", tag: "intel" },
-      { name: "Zero-Day Mapper", tag: "intel" },
-      { name: "AI Threat Pattern Classifier", tag: "intel" },
-      { name: "C2 Infra Analyzer", tag: "intel" },
-      { name: "Agent Fingerprint Logger", tag: "intel" },
-      { name: "Space-CVE Enricher", tag: "intel" },
-      { name: "Firmware Threat Classifier", tag: "intel" },
-
-      // AI / Stats
-      { name: "Telemetry Heatmap Generator", tag: "stats" },
-      { name: "Anomaly Detector LSTM", tag: "ai" },
-      { name: "Copilot Recon Assistant", tag: "ai" }
-    ];
-
-    function renderModules(tag = "all") {
-      const container = document.getElementById("modulesContainer");
-      container.innerHTML = "";
-      modules.forEach(m => {
-        if (tag === "all" || m.tag === tag) {
-          const div = document.createElement("div");
-          div.className = "feature-card";
-          div.innerHTML = `<h3>${m.name}</h3><p>Category: ${m.tag}</p>`;
-          container.appendChild(div);
-        }
-      });
-    }
-
-    const tagSelect = document.getElementById("moduleTag");
-    const uniqueTags = [...new Set(modules.map(m => m.tag))].sort();
-    tagSelect.innerHTML = `<option value="all">All</option>`;
-    uniqueTags.forEach(tag => {
-      const opt = document.createElement("option");
-      opt.value = tag;
-      opt.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
-      tagSelect.appendChild(opt);
-    });
-
-    tagSelect.addEventListener("change", e => renderModules(e.target.value));
-    renderModules();
-
-    const ctx = document.getElementById("telemetryChart").getContext("2d");
-    new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: ["00:00", "01:00", "02:00", "03:00", "04:00"],
-        datasets: [{
-          label: "Telemetry Packets/sec",
-          data: [2, 4, 8, 6, 7],
-          borderColor: "lime",
-          backgroundColor: "rgba(0,255,0,0.2)",
-          fill: true,
-          tension: 0.2
-        }]
-      },
-      options: {
-        scales: {
-          x: { display: true, title: { display: true, text: "Time" } },
-          y: { beginAtZero: true }
-        },
-        plugins: {
-          legend: { labels: { color: "#0f0" } }
-        }
-      }
-    });
-
-    tsParticles.load("tsparticles", {
-      fullScreen: { enable: true },
-      background: { color: "#000" },
-      particles: {
-        number: { value: 75 },
-        color: { value: "#00ff99" },
-        shape: { type: "circle" },
-        opacity: { value: 0.3 },
-        size: { value: { min: 1, max: 4 } },
-        move: { enable: true, speed: 0.5 }
-      }
-    });
-
-    const animatedElements = document.querySelectorAll(
-      ".card, .about, header .overlay, h2, footer"
-    );
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = "running";
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    animatedElements.forEach(el => observer.observe(el));
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
-        if (target) target.scrollIntoView({ behavior: "smooth" });
-      });
-    });
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
