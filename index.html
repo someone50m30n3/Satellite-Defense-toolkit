@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Satellite Defense Toolkit</title>
   <link rel="stylesheet" href="assets/style.css" />
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/satellite-favicon.ico" type="image/x-icon" />
 </head>
 <body>
   <header>
@@ -20,38 +20,14 @@
   <section id="capabilities">
     <h2>Main Capabilities</h2>
     <div class="cards">
-      <div class="card">
-        <h3>Exploits</h3>
-        <p>Offensive operations on lab space systems.</p>
-      </div>
-      <div class="card">
-        <h3>Signal Recon</h3>
-        <p>Capture and analyze SDR, GNSS, BLE, RF, and satellite data.</p>
-      </div>
-      <div class="card">
-        <h3>Live Telemetry</h3>
-        <p>Monitor satellite signals and AI-detect anomalies in real time.</p>
-      </div>
-      <div class="card">
-        <h3>Operational Dashboard</h3>
-        <p>Control modules and agents with a live, tactical web interface.</p>
-      </div>
-      <div class="card">
-        <h3>AI Anomaly Detection</h3>
-        <p>Deploy LSTM and Copilot models for telemetry tagging and threat detection.</p>
-      </div>
-      <div class="card">
-        <h3>Covert C2 Channels</h3>
-        <p>Use RF, GNSS, DNS, and stego dropper channels for reliable command delivery.</p>
-      </div>
-      <div class="card">
-        <h3>Threat Intel & STIX</h3>
-        <p>Convert findings into STIX/TAXII reports with auto enrichment.</p>
-      </div>
-      <div class="card">
-        <h3>Timeline & Forensics</h3>
-        <p>Generate incident timelines and signal timelines for investigations.</p>
-      </div>
+      <div class="card"><h3>Exploits</h3><p>Offensive operations on lab space systems.</p></div>
+      <div class="card"><h3>Signal Recon</h3><p>Capture and analyze SDR, GNSS, BLE, RF, and satellite data.</p></div>
+      <div class="card"><h3>Live Telemetry</h3><p>Monitor satellite signals and AI-detect anomalies in real time.</p></div>
+      <div class="card"><h3>Operational Dashboard</h3><p>Control modules and agents with a live, tactical web interface.</p></div>
+      <div class="card"><h3>AI Anomaly Detection</h3><p>Deploy LSTM and Copilot models for telemetry tagging and threat detection.</p></div>
+      <div class="card"><h3>Covert C2 Channels</h3><p>Use RF, GNSS, DNS, and stego dropper channels for reliable command delivery.</p></div>
+      <div class="card"><h3>Threat Intel & STIX</h3><p>Convert findings into STIX/TAXII reports with auto enrichment.</p></div>
+      <div class="card"><h3>Timeline & Forensics</h3><p>Generate incident timelines and signal timelines for investigations.</p></div>
     </div>
   </section>
 
@@ -67,7 +43,36 @@
       <button data-filter="intel">Intel</button>
       <button data-filter="ai">AI</button>
     </div>
-    <div class="cards"></div>
+
+    <div class="cards">
+      <!-- START: Hardcoded Module Cards -->
+      <div class="card" data-category="defense"><h3>Firmware Memory Shield</h3><p>Protects memory-mapped regions from OTA tampering</p><span class="module-tag">defense</span></div>
+      <div class="card" data-category="defense"><h3>Firewall Rule Generator</h3><p>Generates hardened firewall rules from live traffic data</p><span class="module-tag">defense</span></div>
+      <div class="card" data-category="defense"><h3>GNSS Spoof Guard</h3><p>Detects and mitigates GNSS spoofing attempts</p><span class="module-tag">defense</span></div>
+      <div class="card" data-category="defense"><h3>Firmware Integrity Watcher</h3><p>Continuously checks firmware hash integrity</p><span class="module-tag">defense</span></div>
+      <div class="card" data-category="defense"><h3>Firmware Signature Validator</h3><p>Validates digital signature of firmware images</p><span class="module-tag">defense</span></div>
+      <div class="card" data-category="defense"><h3>Firmware Rollback Protector</h3><p>Prevents firmware downgrade attacks using signature chains</p><span class="module-tag">defense</span></div>
+      <div class="card" data-category="defense"><h3>Binary Integrity Watcher</h3><p>Monitors and alerts on binary modification in space devices</p><span class="module-tag">defense</span></div>
+      <div class="card" data-category="recon"><h3>Passive Satellite Fingerprinter</h3><p>Scans and fingerprints passive satellite RF activity</p><span class="module-tag">recon</span></div>
+      <div class="card" data-category="recon"><h3>SDR Burst Signal Detector</h3><p>Detects burst RF emissions using SDR scan slices</p><span class="module-tag">recon</span></div>
+      <div class="card" data-category="forensics"><h3>Satellite Telemetry Playback Tool</h3><p>Plays back recorded telemetry datasets for forensics</p><span class="module-tag">forensics</span></div>
+      <div class="card" data-category="forensics"><h3>Signal Artifact Timeline Builder</h3><p>Generates a visual timeline of signal events</p><span class="module-tag">forensics</span></div>
+      <div class="card" data-category="forensics"><h3>Firmware Anomaly Explainer</h3><p>Classifies and explains firmware diffs using AI</p><span class="module-tag">forensics</span></div>
+      <div class="card" data-category="c2"><h3>Agent Commander</h3><p>Send covert commands to agents via multiple channels</p><span class="module-tag">c2</span></div>
+      <div class="card" data-category="c2"><h3>Agent Receiver</h3><p>Receives, decrypts and executes remote commands</p><span class="module-tag">c2</span></div>
+      <div class="card" data-category="c2"><h3>RF Stego Dropper</h3><p>Push AES payloads via RF or audio steganography</p><span class="module-tag">c2</span></div>
+      <div class="card" data-category="c2"><h3>Dead-Drop Receiver</h3><p>Polls NFC, QR, and passive drop zones for commands</p><span class="module-tag">c2</span></div>
+      <div class="card" data-category="defense"><h3>AIS Intrusion Monitor</h3><p>Watches for suspicious changes in maritime AIS traffic</p><span class="module-tag">defense</span></div>
+      <div class="card" data-category="defense"><h3>GNSS Entropy Validator</h3><p>Flags GNSS drift and noise inconsistency as anomalies</p><span class="module-tag">defense</span></div>
+      <div class="card" data-category="defense"><h3>Satellite Command Auth Layer</h3><p>Adds cryptographic signing to satellite control channels</p><span class="module-tag">defense</span></div>
+      <div class="card" data-category="ai"><h3>Copilot Telemetry Anomaly Tagger</h3><p>Uses LSTM and rules to classify telemetry anomalies</p><span class="module-tag">ai</span></div>
+      <div class="card" data-category="recon"><h3>RTCM Interceptor</h3><p>Intercepts RTCM GNSS correction streams</p><span class="module-tag">recon</span></div>
+      <div class="card" data-category="c2"><h3>Fallback GNSS Beacon C2</h3><p>Uses GNSS spoof frames as last-resort C2 beacon</p><span class="module-tag">c2</span></div>
+      <div class="card" data-category="forensics"><h3>Timeline & Forensics Builder</h3><p>Extracts and compiles forensic timelines from logs</p><span class="module-tag">forensics</span></div>
+      <div class="card" data-category="intel"><h3>Threat Intel & STIX Generator</h3><p>Converts attack data into STIX 2.1 threat objects</p><span class="module-tag">intel</span></div>
+      <div class="card" data-category="ai"><h3>AI Anomaly Classifier</h3><p>Labels incoming satellite telemetry with ML models</p><span class="module-tag">ai</span></div>
+      <!-- END: Module Cards -->
+    </div>
   </section>
 
   <footer>
