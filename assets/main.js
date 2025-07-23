@@ -1,159 +1,178 @@
 // main.js – Satellite Defense Toolkit Web UI Logic
 
 document.addEventListener('DOMContentLoaded', () => {
-  const moduleCards = document.querySelectorAll('.card');
+  const modules = [
+    {
+      "name": "Firmware Memory Shield",
+      "description": "Protects memory-mapped regions from OTA tampering",
+      "category": "defense"
+    },
+    {
+      "name": "Firewall Rule Generator",
+      "description": "Generates hardened firewall rules from live traffic data",
+      "category": "defense"
+    },
+    {
+      "name": "GNSS Spoof Guard",
+      "description": "Detects and mitigates GNSS spoofing attempts",
+      "category": "defense"
+    },
+    {
+      "name": "Firmware Integrity Watcher",
+      "description": "Continuously checks firmware hash integrity",
+      "category": "defense"
+    },
+    {
+      "name": "Firmware Signature Validator",
+      "description": "Validates digital signature of firmware images",
+      "category": "defense"
+    },
+    {
+      "name": "Firmware Rollback Protector",
+      "description": "Prevents firmware downgrade attacks using signature chains",
+      "category": "defense"
+    },
+    {
+      "name": "Binary Integrity Watcher",
+      "description": "Monitors and alerts on binary modification in space devices",
+      "category": "defense"
+    },
+    {
+      "name": "Passive Satellite Fingerprinter",
+      "description": "Scans and fingerprints passive satellite RF activity",
+      "category": "recon"
+    },
+    {
+      "name": "SDR Burst Signal Detector",
+      "description": "Detects burst RF emissions using SDR scan slices",
+      "category": "recon"
+    },
+    {
+      "name": "Satellite Telemetry Playback Tool",
+      "description": "Plays back recorded telemetry datasets for forensics",
+      "category": "forensics"
+    },
+    {
+      "name": "Signal Artifact Timeline Builder",
+      "description": "Generates a visual timeline of signal events",
+      "category": "forensics"
+    },
+    {
+      "name": "Firmware Anomaly Explainer",
+      "description": "Classifies and explains firmware diffs using AI",
+      "category": "forensics"
+    },
+    {
+      "name": "Agent Commander",
+      "description": "Send covert commands to agents via multiple channels",
+      "category": "c2"
+    },
+    {
+      "name": "Agent Receiver",
+      "description": "Receives, decrypts and executes remote commands",
+      "category": "c2"
+    },
+    {
+      "name": "RF Stego Dropper",
+      "description": "Push AES payloads via RF or audio steganography",
+      "category": "c2"
+    },
+    {
+      "name": "Dead-Drop Receiver",
+      "description": "Polls NFC, QR, and passive drop zones for commands",
+      "category": "c2"
+    },
+    {
+      "name": "AIS Intrusion Monitor",
+      "description": "Watches for suspicious changes in maritime AIS traffic",
+      "category": "defense"
+    },
+    {
+      "name": "GNSS Entropy Validator",
+      "description": "Flags GNSS drift and noise inconsistency as anomalies",
+      "category": "defense"
+    },
+    {
+      "name": "Satellite Command Auth Layer",
+      "description": "Adds cryptographic signing to satellite control channels",
+      "category": "defense"
+    },
+    {
+      "name": "Copilot Telemetry Anomaly Tagger",
+      "description": "Uses LSTM and rules to classify telemetry anomalies",
+      "category": "ai"
+    },
+    {
+      "name": "RTCM Interceptor",
+      "description": "Intercepts RTCM GNSS correction streams",
+      "category": "recon"
+    },
+    {
+      "name": "Fallback GNSS Beacon C2",
+      "description": "Uses GNSS spoof frames as last-resort C2 beacon",
+      "category": "c2"
+    },
+    {
+      "name": "Timeline & Forensics Builder",
+      "description": "Extracts and compiles forensic timelines from logs",
+      "category": "forensics"
+    },
+    {
+      "name": "Threat Intel & STIX Generator",
+      "description": "Converts attack data into STIX 2.1 threat objects",
+      "category": "intel"
+    },
+    {
+      "name": "AI Anomaly Classifier",
+      "description": "Labels incoming satellite telemetry with ML models",
+      "category": "ai"
+    }
+  ];
+
+  const moduleContainer = document.querySelector('#modules .cards');
   const filterButtons = document.querySelectorAll('.filter-bar button');
-  const moduleContainer = document.getElementById('modules');
-  const agentDropdown = document.getElementById('agent-select');
-  const copilotInput = document.getElementById('copilot-input');
-  const copilotSubmit = document.getElementById('copilot-submit');
-  const auditLogContainer = document.getElementById('audit-logs');
-  const ctx = document.getElementById('chart').getContext('2d');
 
-  // WebSocket Log Stream
-  const socket = new WebSocket(`ws://${location.host}/ws`);
-  socket.onmessage = (event) => {
-    const logDiv = document.getElementById('live-logs');
-    const line = document.createElement('div');
-    line.textContent = `[+] ${event.data}`;
-    logDiv.appendChild(line);
-    logDiv.scrollTop = logDiv.scrollHeight;
-  };
+  function renderModules(category = 'all') {
+    moduleContainer.innerHTML = ''; // Clear existing
 
-  // Module Filtering by Tag
+    const filtered = category === 'all'
+      ? modules
+      : modules.filter(mod => mod.category === category);
+
+    filtered.forEach(module => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.dataset.category = module.category;
+
+      const title = document.createElement('h3');
+      title.textContent = module.name;
+
+      const desc = document.createElement('p');
+      desc.textContent = module.description;
+
+      const tag = document.createElement('span');
+      tag.className = 'module-tag';
+      tag.textContent = module.category;
+
+      card.appendChild(title);
+      card.appendChild(desc);
+      card.appendChild(tag);
+
+      moduleContainer.appendChild(card);
+    });
+  }
+
+  // Initial render
+  renderModules();
+
+  // Filter logic
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      const filter = button.getAttribute('data-filter');
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
-
-      moduleCards.forEach(card => {
-        if (filter === 'all' || card.dataset.category === filter) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      const category = button.getAttribute('data-filter');
+      renderModules(category);
     });
-  });
-
-  // Load Modules
-  fetch('/api/modules')
-    .then(res => res.json())
-    .then(modules => {
-      modules.forEach(module => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.dataset.category = module.category;
-
-        const title = document.createElement('h3');
-        title.textContent = module.name;
-
-        const desc = document.createElement('p');
-        desc.textContent = module.description;
-
-        const tag = document.createElement('span');
-        tag.className = 'module-tag';
-        tag.textContent = module.category;
-
-        card.appendChild(title);
-        card.appendChild(desc);
-        card.appendChild(tag);
-
-        card.addEventListener('click', () => runModule(module.name));
-
-        moduleContainer.querySelector('.cards').appendChild(card);
-      });
-    });
-
-  // Load Agents
-  fetch('/api/agents')
-    .then(res => res.json())
-    .then(agents => {
-      agents.forEach(agent => {
-        const option = document.createElement('option');
-        option.value = agent.id;
-        option.textContent = `${agent.name} (${agent.ip})`;
-        agentDropdown.appendChild(option);
-      });
-    });
-
-  // Run Module
-  function runModule(moduleName) {
-    const agentId = agentDropdown.value;
-    if (!agentId) return alert('Select an agent first.');
-
-    fetch('/api/run', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ module: moduleName, agent: agentId })
-    })
-    .then(res => res.json())
-    .then(resp => {
-      if (resp.success) {
-        appendLog(`[✓] Module ${moduleName} launched on ${agentId}`);
-      } else {
-        appendLog(`[!] Failed: ${resp.error}`);
-      }
-    });
-  }
-
-  // Append log to live feed
-  function appendLog(msg) {
-    const logDiv = document.getElementById('live-logs');
-    const line = document.createElement('div');
-    line.textContent = msg;
-    logDiv.appendChild(line);
-    logDiv.scrollTop = logDiv.scrollHeight;
-  }
-
-  // Copilot Submit
-  copilotSubmit.addEventListener('click', () => {
-    const input = copilotInput.value.trim();
-    if (!input) return;
-
-    fetch('/api/copilot', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: input })
-    })
-    .then(res => res.json())
-    .then(data => {
-      appendLog(`[Copilot] ${data.response}`);
-    });
-  });
-
-  // Load Audit Logs
-  fetch('/api/audit')
-    .then(res => res.json())
-    .then(logs => {
-      logs.forEach(entry => {
-        const row = document.createElement('div');
-        row.textContent = `${entry.timestamp} – ${entry.event}`;
-        auditLogContainer.appendChild(row);
-      });
-    });
-
-  // Render Chart.js Metrics (dummy data initially)
-  const telemetryChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['00:00', '00:05', '00:10', '00:15'],
-      datasets: [{
-        label: 'Telemetry',
-        data: [5, 9, 3, 7],
-        borderColor: '#0ff',
-        backgroundColor: 'rgba(0, 255, 255, 0.1)',
-        tension: 0.3
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        x: { display: true },
-        y: { display: true }
-      }
-    }
   });
 
   // Smooth scroll for nav links
